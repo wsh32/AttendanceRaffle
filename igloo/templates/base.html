@@ -26,6 +26,14 @@
 					<div class="nav-wrapper"><a id="logo-container" href="/" class="brand-logo hide-on-med-and-down">The Igloo</a>
 						<ul class="right hide-on-med-and-down">
 							<li><a class="waves-effect waves-light" href="/">Home</a></li>
+							{% if "userid" in request.session %}
+							<li><a class="waves-effect waves-light" href="/submit">Submit</a></li>
+							<li><a class="waves-effect waves-light" href="/account">Account</a></li>
+							<li><a class="waves-effect waves-light" href="/logout">Log out</a></li>
+							{% else %}
+							<li><a class="waves-effect waves-light" href="/login">Log in</a></li>
+							<li><a class="waves-effect waves-light" href="/register">Register</a></li>
+							{% endif %}
 						</ul>
 
 						<ul id="nav-mobile" class="side-nav">

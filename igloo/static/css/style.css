@@ -17,3 +17,24 @@ footer {
 ::-webkit-scrollbar {
     display: none;
 }
+
+ul.side-nav li.logo {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 125px;
+}
+
+ul.side-nav li.logo:hover {
+	background-color: transparent;
+}
+
+#logo-container {
+	height: 80px;
+	margin-bottom: 32px;
+}
+
+#front-page-logo {
+	display: inline-block;
+	height: 100%;
+	pointer-events: none;
+};

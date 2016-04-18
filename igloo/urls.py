@@ -16,11 +16,18 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from igloo import views
+#todo: import api
 
 urlpatterns = [
-    # Admin
     url(r'^admin/', admin.site.urls),
 
-    # Home
+    # Front End
     url(r'^$', views.home),
+    url(r'^login/', views.login),
+    url(r'^logout/', views.logout),
+    url(r'^register/', views.register),
+    url(r'^account/', views.account),
+
+    # Back End
+#    url(r'^api/login', auth.login),
 ]
