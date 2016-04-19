@@ -4,19 +4,19 @@ from django.http import HttpResponse
 from django.contrib.auth.hashers import *
 
 def login(request):
-    if (request.method != 'POST') or not all(x in request.POST for x in ['username', 'password']):
+	if (request.method != 'POST') or not all(x in request.POST for x in ['username', 'password']):
 		return HttpResponse()
 
-    if 'userid' in request.session:
+	if 'userid' in request.session:
 		response = {'success': False, 'message': 'You are already logged in.'}
 		return HttpResponse(json.dumps(response), content_type="application/json")
 
-    try:
-		m = db_team.objects.get(name=request.POST['username'])
+	try:
+		m = user.objects.get(username=request.POST['username'])
 	except:
 		m = False
 
-    if hasattr(m, 'password') and check_password(request.POST['password'], m.password):
+	if hasattr(m, 'password') and check_password(request.POST['password'], m.password):
 		request.session['userid'] = m.id
 		m.lastlogin = time.time()
 		m.save() # Update last login.
