@@ -58,6 +58,13 @@
 						<h5 class="white-text">Pages</h5>
 						<ul>
 							<li><a class="white-text" href="/">Home</a></li>
+							{% if "userid" in request.session %}
+							<li><a class="white-text" href="/submit">Submit</a></li>
+							<li><a class="white-text" href="/account">Account</a></li>
+							{% else %}
+							<li><a class="white-text" href="/login">Log in</a></li>
+							<li><a class="white-text" href="/register">Register</a></li>
+							{% endif %}
 						</ul>
 					</div>
 					<div class="col m3 s12">

@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from igloo import views
-from api import account, auth
+from api import account, auth, submit
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -32,4 +32,5 @@ urlpatterns = [
     url(r'^api/login/', auth.login),
     url(r'^api/logout/', auth.logout),
     url(r'^api/register/', account.create_account),
+    url(r'^api/submit/', submit.submit),
 ]

@@ -4,14 +4,6 @@ from django import forms
 from django.contrib.auth.hashers import *
 import json, re
 
-def get_client_ip(request):
-	x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-	if x_forwarded_for:
-		ip = x_forwarded_for.split(',')[0]
-	else:
-		ip = request.META.get('REMOTE_ADDR')
-	return ip
-
 def new_user(username, password, name, email):
 	try:
 		account = user(username=username, password=password, name=name, email=email)
