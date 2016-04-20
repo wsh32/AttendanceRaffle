@@ -38,6 +38,13 @@
 								<object id="front-page-logo" type="image/png" data="{% static 'img/favicon.png' %}"></object></a></li>
 							<div class="divider"></div>
 							<li><a href="/">Home</a></li>
+							{% if "userid" in request.session %}
+							<li><a href="/submit">Submit</a></li>
+							<li><a href="/account">Account</a></li>
+							{% else %}
+							<li><a href="/login">Log in</a></li>
+							<li><a href="/register">Register</a></li>
+							{% endif %}
 						</ul>
 						<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 					</div>
