@@ -18,6 +18,11 @@ from django.contrib import admin
 from igloo import views
 from api import account, auth, submit
 
+handler500 = views.handler500
+handler404 = views.handler404
+handler403 = views.handler403
+handler400 = views.handler400
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 

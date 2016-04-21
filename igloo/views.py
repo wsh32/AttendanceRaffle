@@ -15,3 +15,15 @@ def account(request):
 
 def submit(request):
 	return render(request, 'submit.html')
+
+def handler500(request):
+	return render(request, '500.html')
+
+def handler404(request):
+	return render(request, '404.html')
+
+def handler403(request):
+	return render(request, '403.html')
+
+def handler400(request):
+	return render(request, '400.html')
