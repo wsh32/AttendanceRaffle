@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block title %}404 Error{% endblock %}
 
@@ -6,10 +7,12 @@
 		<main>
 			<div class="container">
 				<h2 class="center blue-text">404 Error</h2>
-				<h5 class="center light">It's a 404 error. Don't know what it is? <a href="http://bfy.tw/LIe">Google it.</h5>
+				<h5 class="center light">It's a 404 error. Don't know what it is? <a href="http://bfy.tw/LIe" target="_blank">Google it.</a></h5>
 				<br>
 				<div class="row">
-					<img class="materialboxed" data-caption="An angry penguin" width="100%" src="{% static 'img/error.png' %}">
+					<div class="center col s12 m6 offset-m3">
+						<img class="materialboxed" data-caption="An angry penguin" width="100%" src="{% static 'img/error.png' %}">
+					</div>
 				</div>
 			</div>
 		</main>
