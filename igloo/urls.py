@@ -25,11 +25,6 @@ handler400 = views.handler400
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-	
-    url(r'^400/', views.handler400),
-    url(r'^403/', views.handler403),
-    url(r'^404/', views.handler404),
-    url(r'^500/', views.handler500),
 
     # Front End
     url(r'^$', views.home),
