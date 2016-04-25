@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin as webmaster
 from igloo import views
-from api import account, auth, submit, admin
+from api import account, auth, submit, adminsite
 from api.config import config
 
 handler500 = views.handler500
@@ -29,22 +29,24 @@ urlpatterns = [
 
     # Front End
     url(r'^$', views.home),
-    url(r'^login/', views.login),
-    url(r'^register/', views.register),
-    url(r'^account/', views.account),
-    url(r'^submit/', views.submit),
+    url(r'^login/$', views.login),
+    url(r'^register/$', views.register),
+    url(r'^account/$', views.account),
+    url(r'^submit/$', views.submit),
 
     # Back End
-    url(r'^api/login/', auth.login),
-    url(r'^api/logout/', auth.logout),
-    url(r'^api/register/', account.create_account),
-    url(r'^api/submit/', submit.submit),
+    url(r'^api/login/$', auth.login),
+    url(r'^api/logout/$', auth.logout),
+    url(r'^api/register/$', account.create_account),
+    url(r'^api/submit/$', submit.submit),
 
     # Admin
     url(r'^admin/$', views.admin.home),
-    url(r'^admin/register/', views.admin.register),
+    url(r'^admin/register/$', views.admin.register),
+    url(r'^admin/raffle/$', views.admin.raffle),
+    url(r'^admin/event/$', views.admin.event),
 
-    url(r'^api/admin/login/', admin.auth.login),
-    url(r'^api/admin/logout/', admin.auth.logout),
-    url(r'^api/admin/register/', admin.account.create_account),
+    url(r'^api/admin/login/$', adminsite.auth.login),
+    url(r'^api/admin/logout/$', adminsite.auth.logout),
+    url(r'^api/admin/register/$', adminsite.account.create_account),
 ]

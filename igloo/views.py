@@ -35,8 +35,18 @@ class admin:
 			return render(request, 'admin.html')
 		else:
 			return render(request, 'auth.html')
+	def raffle(request):
+		if 'admin' in request.session:
+			return render(request, 'admin.html')
+		else:
+			return render(request, 'auth.html')
+	def event(request):
+		if 'admin' in request.session:
+			return render(request, 'admin.html')
+		else:
+			return render(request, 'auth.html')
 	def register(request):
-		if True:
+		if config.ADMIN_CREATE or 'admin' in request.session:
 			return render(request, 'create_admin.html')
 		else:
 			return home(request)

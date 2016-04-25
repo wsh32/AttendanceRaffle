@@ -7,7 +7,7 @@ import json, re
 
 def new_user(username, password, name, email):
 	try:
-		account = user(username=username, password=password, name=name, email=email)
+		account = user(username=username, password=password, name=name, email=email, points=0)
 		account.save()
 
 		return True

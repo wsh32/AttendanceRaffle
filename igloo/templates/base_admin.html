@@ -26,6 +26,8 @@
 							<li><a class="waves-effect waves-light" href="/">View Site</a></li>
 							<li><a class="waves-effect waves-light" href="/admin">Admin Home</a></li>
 							{% if "admin" in request.session %}
+							<li><a class="waves-effect waves-light" href="/admin/raffle">Raffle</a></li>
+							<li><a class="waves-effect waves-light" href="/admin/event">Event</a></li>
 							<li><a class="waves-effect waves-light" id="logout">Logout</a></li>
 							{% endif %}
 						</ul>
@@ -37,6 +39,8 @@
 							<li><a href="/">View Site</a></li>
               <li><a href="/admin">Admin Home</a></li>
 							{% if "admin" in request.session %}
+							<li><a href="/admin/raffle">Raffle</a></li>
+							<li><a href="/admin/event">Event</a></li>
 							<li><a id="logout">Log Out</a></li>
 							{% endif %}
 						</ul>
@@ -61,7 +65,8 @@
 							<li><a class="white-text" href="/">View Site</a></li>
 							<li><a class="white-text" href="/admin">Admin Home</a></li>
 							{% if "userid" in request.session %}
-							<li><a class="white-text" href="/">.</a></li>
+							<li><a class="white-text" href="/admin/raffle">Raffle</a></li>
+							<li><a class="white-text" href="/admin/event">Event</a></li>
 							{% endif %}
 						</ul>
 					</div>
