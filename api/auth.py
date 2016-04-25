@@ -18,8 +18,6 @@ def login(request):
 
 	if hasattr(m, 'password') and check_password(request.POST['password'], m.password):
 		request.session['userid'] = m.id
-		m.lastlogin = time.time()
-		m.save() # Update last login.
 		response = {'success': True, 'message': 'You have logged in.'}
 	else:
 		response = {'success': False, 'message': 'Log in failed.'}

@@ -14,9 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from django.contrib import admin
+from django.contrib import admin as webmaster
 from igloo import views
-from api import account, auth, submit
+from api import account, auth, submit, admin
+from api.config import config
 
 handler500 = views.handler500
 handler404 = views.handler404
@@ -24,7 +25,7 @@ handler403 = views.handler403
 handler400 = views.handler400
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^webmaster/', webmaster.site.urls),
 
     # Front End
     url(r'^$', views.home),
@@ -38,4 +39,12 @@ urlpatterns = [
     url(r'^api/logout/', auth.logout),
     url(r'^api/register/', account.create_account),
     url(r'^api/submit/', submit.submit),
+
+    # Admin
+    url(r'^admin/$', views.admin.home),
+    url(r'^admin/register/', views.admin.register),
+
+    url(r'^api/admin/login/', admin.auth.login),
+    url(r'^api/admin/logout/', admin.auth.logout),
+    url(r'^api/admin/register/', admin.account.create_account),
 ]

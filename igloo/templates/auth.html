@@ -1,0 +1,50 @@
+{% extends "base_admin.html" %}
+{% load staticfiles %}
+
+{% block title %}Log In{% endblock %}
+
+{% block main %}
+    <main>
+    	<div class="no-pad-bot section" id="index-banner">
+    		<div class="container">
+    			<h1 class="header center blue-text">Unauthorized</h1>
+    			<div class="row center">
+    				<h5 class="light">You are not authorized to view this resource!</h5>
+    			</div>
+    		</div>
+    	</div>
+
+    	<div class="container">
+    		<div class="section">
+          <div class="row">
+          	<form class="col s12" action="/api/admin/login/">
+          		<div class="container">
+          			<div class="row">
+          				<div class="input-field col s12">
+          					<i class="material-icons prefix">account_circle</i>
+          					<input name="username" id="username" type="text" class="validate">
+          					<label for="username">Username</label>
+          				</div>
+          			</div>
+          			<div class="row">
+          				<div class="input-field col s12">
+          					<i class="material-icons prefix">vpn_key</i>
+          					<input name="password" id="password" type="password" class="validate">
+          					<label for="password">Password</label>
+          				</div>
+          			</div>
+								{% csrf_token %}
+          			<button class="btn waves-effect waves-light blue accent-2" type="submit" name="action">Submit
+          				<i class="mdi-content-send right"></i>
+          			</button>
+          		</div>
+          	</form>
+          </div>
+    		</div>
+    	</div>
+    </main>
+{% endblock %}
+
+{% block js %}
+                <script src="{% static 'js/admin/auth.js' %}"></script>
+{% endblock %}

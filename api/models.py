@@ -23,3 +23,8 @@ class attendance(models.Model):
 
     class Meta:
         unique_together = ('user', 'event')
+
+class admin(models.Model):
+	id = models.AutoField(primary_key=True)
+	user = models.CharField(max_length=15, unique=True)
+	password = models.TextField()

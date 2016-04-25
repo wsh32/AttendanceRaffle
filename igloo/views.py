@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from api.stats import get_points, get_name, get_events
+from api.config import config
 
 def home(request):
 	return render(request, 'home.html')
@@ -27,3 +28,15 @@ def handler403(request):
 
 def handler400(request):
 	return render(request, '400.html')
+
+class admin:
+	def home(request):
+		if 'admin' in request.session:
+			return render(request, 'admin.html')
+		else:
+			return render(request, 'auth.html')
+	def register(request):
+		if True:
+			return render(request, 'create_admin.html')
+		else:
+			return home(request)

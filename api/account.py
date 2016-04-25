@@ -1,4 +1,5 @@
 from api.models import user
+from api.config import config
 from django.http import HttpResponse
 from django import forms
 from django.contrib.auth.hashers import *
@@ -56,6 +57,8 @@ def create_account(request):
 		response = {'success': False, 'message': 'DONT ACT LIKE YOU DIDNT KNOW THAT YOU ENTERED IN INVALID CHARACTERS TO TRY TO BREAK THE SITE!!'}
 	elif password != confirm:
 		response = {'success': False, 'message': 'If you cannot repeat your password you should change it.'}
+	elif config.ACCOUNT_DISABLE:
+		response = {'success': False, 'message': 'Account creation is temporarily disabled! Check again later.'}
 	else:
 		success = new_user(username, make_password(password), name, email)
 

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+	{% load staticfiles %}
+	<head>
+		<title>{% block title %}{% endblock %} | Igloo Administration</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+
+		<!-- Favicon -->
+		<link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+
+		<!-- CSS  -->
+		<link type="text/css" rel="stylesheet" href="{% static 'css/materialize.css' %}" />
+		<link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/mdi.css' %}" />
+		{% block css %}{% endblock %}
+	</head>
+
+	<body>
+		<header>
+			<nav class="blue" role="navigation">
+				<div class="container">
+					<div class="nav-wrapper"><a id="logo-container" href="/" class="brand-logo hide-on-med-and-down">The Igloo</a>
+						<ul class="right hide-on-med-and-down">
+							<li><a class="waves-effect waves-light" href="/">View Site</a></li>
+							<li><a class="waves-effect waves-light" href="/admin">Admin Home</a></li>
+							{% if "admin" in request.session %}
+							<li><a class="waves-effect waves-light" id="logout">Logout</a></li>
+							{% endif %}
+						</ul>
+
+						<ul id="nav-mobile" class="side-nav">
+							<li class="logo center"><a id="logo-container" href="/" class="brand-logo">
+								<object id="front-page-logo" type="image/png" data="{% static 'img/favicon.png' %}"></object></a></li>
+							<div class="divider"></div>
+							<li><a href="/">View Site</a></li>
+              <li><a href="/admin">Admin Home</a></li>
+							{% if "admin" in request.session %}
+							<li><a id="logout">Log Out</a></li>
+							{% endif %}
+						</ul>
+						<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		{% block main %}{% endblock %}
+
+		<footer class="grey darken-2 page-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col m6 s12">
+						<h5 class="white-text">The Igloo</h5>
+						<p class="grey-text text-lighten-4">An online member management system that tracks events attended and rewards service with raffle tickets.</p>
+					</div>
+					<div class="col m3 s12">
+						<h5 class="white-text">Pages</h5>
+						<ul>
+							<li><a class="white-text" href="/">View Site</a></li>
+							<li><a class="white-text" href="/admin">Admin Home</a></li>
+							{% if "userid" in request.session %}
+							<li><a class="white-text" href="/">.</a></li>
+							{% endif %}
+						</ul>
+					</div>
+					<div class="col m3 s12">
+						<h5 class="white-text">Connect</h5>
+						<ul>
+              <li><a class="white-text" href="http://keyclub.org">Key Club International</a></li>
+              <li><a class="white-text" href="http://cnhkeyclub.org">CNH Key Club</a></li>
+              <li><a class="white-text" href="https://www.facebook.com/groups/197028903695590/">CAMS Key Club FaceBook Group</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="footer-copyright">
+				<div class="container">
+					&copy; CAMS Key Club 2016 | Made with <a class="grey-text text-lighten-2" href="http://materializecss.com/" target="_blank">MaterializeCSS</a>
+					<a class="grey-text text-lighten-2 right modal-trigger" href="#license">MIT License</a>
+				</div>
+			</div>
+
+			<div id="license" class="modal modal-fixed-footer">
+				<div class="modal-content">
+				<h4>The MIT License (MIT)</h4>
+					<p>Copyright &copy; 2016 Wesley Soo-Hoo<br><br>
+					Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.<br><br>
+					THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p><br>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-action modal-close waves-effect waves-light btn-flat">Agree</a>
+				</div>
+			</div>
+
+		</footer>
+
+		<script src="{% static 'js/jquery.min.js' %}"></script>
+		<script src="{% static 'js/materialize.min.js' %}"></script>
+		<script src="{% static 'js/init.js' %}"></script>
+		<script src="{% static 'js/admin/admin.js' %}"></script>
+		{% block js %}{% endblock %}
+	</body>
+
+</html>
