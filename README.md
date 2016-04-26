@@ -5,7 +5,4 @@ Attendance Tracker and Reward System
 ### Prerequisites
 
 - Python 3.4+
-- Python Packages:
-  - Django
-  - json
-  
+- Django 1.9.2+
