@@ -1,10 +1,9 @@
-from api.models import admin
+from api.models import admin, user, event
 from django.http import HttpResponse
 from django.contrib.auth.hashers import *
-import json, re, time
+import json, re, time, random
 
 class account:
-
 	def create_account(request):
 		if (request.method != 'POST') or not all(x in request.POST for x in ['username', 'password', 'confirm']):
 			return HttpResponse()
@@ -62,8 +61,6 @@ class auth:
 		return HttpResponse(json.dumps(response), content_type="application/json")
 
 	def logout(request):
-		'''Handles logout requests. Accepts no post parameters'''
-
 		if 'admin' not in request.session:
 			response = {'success': False, 'message': 'You are not logged in.'}
 		else:
@@ -71,3 +68,35 @@ class auth:
 			response = {'success': True, 'message': 'You have been logged out.'}
 
 		return HttpResponse(json.dumps(response), content_type="application/json")
+
+class event_management:
+	def generate_key():
+		length = 6
+		chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+		return ''.join(random.choice(chars) for i in range(length))
+
+	def add_event(request):
+		if (request.method != 'POST') or not all(x in request.POST for x in ['title','value']):
+			return HttpResponse()
+
+		title = request.POST['title']
+		value = request.POST['value']
+
+		try:
+			repeat_title = False
+			event.objects.get(title=title)
+		except:
+			repeat_title = True
+
+		try:
+			value = int(value)
+		except:
+			value = False
+
+		if len(title) == 0 or len(value) == 0:
+			response = {'success': False, 'message': 'All fields must be filled out.'}
+		elif repeat_title:
+			response = {'success': False, 'message': 'Pick a unique title!'}
+		elif not(value):
+			response = {'success': False, 'message': 'The value must be an integer!'}
+		

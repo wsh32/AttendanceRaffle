@@ -14,7 +14,6 @@ class event(models.Model):
     title = models.TextField()
     code = models.CharField(max_length=10, unique=True)
     value = models.IntegerField()
-    expired = models.IntegerField()
 
 class attendance(models.Model):
     id = models.AutoField(primary_key=True)

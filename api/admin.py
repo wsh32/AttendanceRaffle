@@ -8,7 +8,7 @@ class userAdmin(admin.ModelAdmin):
     list_display = ('id','username','points','name','email')
 
 class eventAdmin(admin.ModelAdmin):
-    list_display = ('id','title','code','value','expired')
+    list_display = ('id','title','code','value')
 
 class attendanceAdmin(admin.ModelAdmin):
     list_display = ('id','user','event')
