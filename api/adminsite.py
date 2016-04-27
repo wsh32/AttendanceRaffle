@@ -99,4 +99,14 @@ class event_management:
 			response = {'success': False, 'message': 'Pick a unique title!'}
 		elif not(value):
 			response = {'success': False, 'message': 'The value must be an integer!'}
-		
+		elif re.search('[ -~]{1,40}', title).group() != title:
+			response = {'success': False, 'message': 'DONT ACT LIKE YOU DIDNT KNOW THAT YOU ENTERED IN INVALID CHARACTERS TO TRY TO BREAK THE SITE!!'}
+		else:
+			try:
+				key = generate_key()
+				e = event(title=title, value=value, key=key)
+				e.save()
+
+				response = {'success': True, 'message': 'Event creation successful! You key is: ' + key}
+			except:
+				response = {'success': False, 'messsage': 'Error! Please try again in a couple seconds'}
