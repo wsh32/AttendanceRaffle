@@ -76,11 +76,12 @@ class event_management:
 		return ''.join(random.choice(chars) for i in range(length))
 
 	def add_event(request):
-		if (request.method != 'POST') or not all(x in request.POST for x in ['title','value']):
+		if (request.method != 'POST') or not all(x in request.POST for x in ['title','value','key']):
 			return HttpResponse()
 
 		title = request.POST['title']
 		value = request.POST['value']
+		key = request.POST['key']
 
 		try:
 			repeat_title = False
@@ -99,14 +100,13 @@ class event_management:
 			response = {'success': False, 'message': 'Pick a unique title!'}
 		elif not(value):
 			response = {'success': False, 'message': 'The value must be an integer!'}
-		elif re.search('[ -~]{1,40}', title).group() != title:
+		elif re.search('[ -~]{1,40}', title).group() != title and re.search('[ -~]{1,40}', key).group() != key:
 			response = {'success': False, 'message': 'DONT ACT LIKE YOU DIDNT KNOW THAT YOU ENTERED IN INVALID CHARACTERS TO TRY TO BREAK THE SITE!!'}
 		else:
 			try:
-				key = generate_key()
 				e = event(title=title, value=value, key=key)
 				e.save()
 
-				response = {'success': True, 'message': 'Event creation successful! You key is: ' + key}
+				response = {'success': True, 'message': 'Event creation successful!'}
 			except:
 				response = {'success': False, 'messsage': 'Error! Please try again in a couple seconds'}
