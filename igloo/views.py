@@ -42,7 +42,7 @@ class admin:
 			return render(request, 'auth.html')
 	def event(request):
 		if 'admin' in request.session:
-			return render(request, 'admin.html')
+			return render(request, 'add_event.html')
 		else:
 			return render(request, 'auth.html')
 	def register(request):

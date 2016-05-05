@@ -80,21 +80,21 @@ class event_management:
 			return HttpResponse()
 
 		title = request.POST['title']
-		value = request.POST['value']
+		val = request.POST['value']
 		key = request.POST['key']
 
 		try:
-			repeat_title = False
+			repeat_title = True
 			event.objects.get(title=title)
 		except:
-			repeat_title = True
+			repeat_title = False
 
 		try:
-			value = int(value)
+			value = int(val)
 		except:
 			value = False
 
-		if len(title) == 0 or len(value) == 0:
+		if len(title) == 0 or len(val) == 0:
 			response = {'success': False, 'message': 'All fields must be filled out.'}
 		elif repeat_title:
 			response = {'success': False, 'message': 'Pick a unique title!'}
@@ -109,4 +109,6 @@ class event_management:
 
 				response = {'success': True, 'message': 'Event creation successful!'}
 			except:
-				response = {'success': False, 'messsage': 'Error! Please try again in a couple seconds'}
+				response = {'success': False, 'message': 'Error! Please try again in a couple seconds'}
+
+		return HttpResponse(json.dumps(response), content_type="application/json")
