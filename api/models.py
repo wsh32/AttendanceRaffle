@@ -12,7 +12,7 @@ class user(models.Model):
 class event(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.TextField()
-    code = models.CharField(max_length=10, unique=True)
+    code = models.CharField(max_length=10)
     value = models.IntegerField()
 
 class attendance(models.Model):
