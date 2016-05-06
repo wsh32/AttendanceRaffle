@@ -42,12 +42,14 @@ urlpatterns = [
 
     # Admin
     url(r'^admin/$', views.admin.home),
-    url(r'^admin/register/$', views.admin.register),
     url(r'^admin/raffle/$', views.admin.raffle),
     url(r'^admin/event/$', views.admin.event),
 
     url(r'^api/admin/login/$', adminsite.auth.login),
     url(r'^api/admin/logout/$', adminsite.auth.logout),
-    url(r'^api/admin/register/$', adminsite.account.create_account),
     url(r'^api/admin/event/$', adminsite.event_management.add_event),
 ]
+
+if config.ADMIN_CREATE:
+    urlpatterns.append(url(r'^admin/register/$', views.admin.register))
+    urlpatterns.append(url(r'^api/admin/register/$', adminsite.account.create_account))

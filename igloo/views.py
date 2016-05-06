@@ -49,4 +49,4 @@ class admin:
 		if config.ADMIN_CREATE or 'admin' in request.session:
 			return render(request, 'create_admin.html')
 		else:
-			return home(request)
+			return render(request, 'auth.html')
