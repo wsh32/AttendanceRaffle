@@ -101,7 +101,7 @@ class event_management:
 		elif not(value):
 			response = {'success': False, 'message': 'The value must be an integer!'}
 		elif len(key) > 10:
-			response = {'success': False, 'message': 'The key must be less than 10 characters!'}
+			response = {'success': False, 'message': 'The key must be less than 10 characters'}
 		elif re.search('[ -~]{1,40}', title).group() != title and re.search('[ -~]{1,40}', key).group() != key:
 			response = {'success': False, 'message': 'DONT ACT LIKE YOU DIDNT KNOW THAT YOU ENTERED IN INVALID CHARACTERS TO TRY TO BREAK THE SITE!!'}
 		else:
