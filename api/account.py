@@ -44,8 +44,9 @@ def create_account(request):
 		user.objects.get(email=email)
 	except:
 		repeat_email = False
-
-	if len(username) == 0 or len(password) == 0 or len(name) == 0 or len(email) == 0:
+	if not(email):
+		response = {'success': False, 'message': 'Please use your real email.'}
+	elif len(username) == 0 or len(password) == 0 or len(name) == 0 or len(email) == 0:
 		response = {'success': False, 'message': 'All fields must be filled out.'}
 	elif repeat_name:
 		response = {'success': False, 'message': 'One person. One account.'}
