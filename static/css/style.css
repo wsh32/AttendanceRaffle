@@ -1,0 +1,52 @@
+main {
+    flex: 1 0 auto;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+footer {
+	width: 100%;
+	height: 10%;
+	bottom: 0px;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+ul.side-nav li.logo {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 125px;
+}
+
+ul.side-nav li.logo:hover {
+	background-color: transparent;
+}
+
+#logo-container {
+	height: 80px;
+	margin-bottom: 32px;
+}
+
+#front-page-logo {
+	display: inline-block;
+	height: 100%;
+	pointer-events: none;
+}
+
+#events li:before {
+	content: "> ";
+	color: #536dfe;
+	font-weight: bold;
+}
+
+#events li:after {
+	content: " <";
+	color: #536dfe;
+	font-weight: bold;
+}
