@@ -4,7 +4,7 @@ from django.contrib.auth.hashers import *
 import json, re, time, random
 
 class account:
-	def create_account(request):
+	def create_account(self, request):
 		if (request.method != 'POST') or not all(x in request.POST for x in ['username', 'password', 'confirm']):
 			return HttpResponse()
 
@@ -38,7 +38,7 @@ class account:
 		return HttpResponse(json.dumps(response), content_type="application/json")
 
 class auth:
-	def login(request):
+	def login(self, request):
 		if (request.method != 'POST') or not all(x in request.POST for x in ['username', 'password']):
 			return HttpResponse()
 
@@ -60,7 +60,7 @@ class auth:
 
 		return HttpResponse(json.dumps(response), content_type="application/json")
 
-	def logout(request):
+	def logout(self, request):
 		if 'admin' not in request.session:
 			response = {'success': False, 'message': 'You are not logged in.'}
 		else:
@@ -70,12 +70,12 @@ class auth:
 		return HttpResponse(json.dumps(response), content_type="application/json")
 
 class event_management:
-	def generate_key():
+	def generate_key(self):
 		length = 6
 		chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
 		return ''.join(random.choice(chars) for i in range(length))
 
-	def add_event(request):
+	def add_event(self, request):
 		if (request.method != 'POST') or not all(x in request.POST for x in ['title','value','key']):
 			return HttpResponse()
 
