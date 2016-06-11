@@ -47,6 +47,7 @@ urlpatterns = [
 
     url(r'^api/admin/login/$', adminsite.auth.login),
     url(r'^api/admin/logout/$', adminsite.auth.logout),
+    url(r'^api/admin/draw/$', adminsite.raffle.draw),
     url(r'^api/admin/event/$', adminsite.event_management.add_event),
 ]
 

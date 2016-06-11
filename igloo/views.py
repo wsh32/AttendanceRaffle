@@ -37,7 +37,7 @@ class admin:
 			return render(request, 'auth.html')
 	def raffle(request):
 		if 'admin' in request.session:
-			return render(request, 'admin.html')
+			return render(request, 'raffle.html')
 		else:
 			return render(request, 'auth.html')
 	def event(request):

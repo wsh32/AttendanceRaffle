@@ -4,7 +4,7 @@ from django.contrib.auth.hashers import *
 import json, re, time, random
 
 class account:
-    def create_account(self, request):
+    def create_account(request):
         if (request.method != 'POST') or not all(x in request.POST for x in ['username', 'password', 'confirm']):
             return HttpResponse()
 
@@ -38,7 +38,7 @@ class account:
         return HttpResponse(json.dumps(response), content_type="application/json")
 
 class auth:
-    def login(self, request):
+    def login(request):
         if (request.method != 'POST') or not all(x in request.POST for x in ['username', 'password']):
             return HttpResponse()
 
@@ -60,7 +60,7 @@ class auth:
 
         return HttpResponse(json.dumps(response), content_type="application/json")
 
-    def logout(self, request):
+    def logout(request):
         if 'admin' not in request.session:
             response = {'success': False, 'message': 'You are not logged in.'}
         else:
@@ -75,7 +75,7 @@ class event_management:
         chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
         return ''.join(random.choice(chars) for i in range(length))
 
-    def add_event(self, request):
+    def add_event(request):
         if (request.method != 'POST') or not all(x in request.POST for x in ['title','value','key']):
             return HttpResponse()
 
@@ -116,16 +116,14 @@ class event_management:
         return HttpResponse(json.dumps(response), content_type="application/json")
 
 class raffle:
-    def get(self):
+    def draw(request):
         list = []
         all = user.objects.all()
         for u in all:
             for i in range(u.points):
-                list.append(i.id)
-        return list[random.randint(0, len(list))]
+                list.append(u.id)
+        id = list[random.randint(0, len(list)-1)]
 
-    def draw(self, request):
-        id = self.get()
         try:
             username = user.objects.get(id=id).username
             name = user.objects.get(id=id).name
@@ -133,5 +131,6 @@ class raffle:
             response = {'success': False, 'message': 'Error! Please try again in a couple seconds'}
             return HttpResponse(json.dumps(response), content_type="application/json")
 
-        response = {'success': True, 'message': 'This week\'s winner is: ' + name + ' ! Congratulations!'}
+        response = {'success': True, 'message': 'This week\'s winner is: ' + name + '! Congratulations!'}
         return HttpResponse(json.dumps(response), content_type="application/json")
+
